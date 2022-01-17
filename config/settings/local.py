@@ -12,8 +12,11 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Discriminator_dev_v1',
+        'USER': 'Disc',
+        'PASSWORD': 'V9reamWwANyYc8j',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
-
