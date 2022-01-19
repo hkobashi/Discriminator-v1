@@ -18,6 +18,9 @@ DATABASES = {
         'PASSWORD': 'V9reamWwANyYc8j',
         'HOST': 'localhost',
         'PORT': '3306',
+        'TEST': {
+            'NAME': 'test_Discriminator_dev_v1',
+        },
     }
 }
 
