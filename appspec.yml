@@ -1,0 +1,24 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/discriminator
+    runas: ubuntu
+permissions:
+  - object: /
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
+hooks:
+  ApplicationStop:
+    - location: scripts/CodeDeploy/01_ApplicationStop.sh
+      runas: ubuntu
+      timeout: 30
+  BeforeInstall:
+    - location: scripts/CodeDeploy/02_AfterInstall.sh
+      runas: ubuntu
+      timeout: 300
+  ApplicationStart:
+  - location: scripts/CodeDeploy/03_ApplicationStart.sh
+    runas: ubuntu
+    timeout: 30

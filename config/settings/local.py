@@ -1,26 +1,16 @@
 from .base import *
+import environ
 
-# INSTALLED_APPS += [
-#     "debug_toolbar",
-# ]
+# .envにある変数を読み込み
+env = environ.Env(DEBUG=(bool,False))
+env.read_env(os.path.join(BASE_DIR,'.env'))
 
-SECRET_KEY = 'x)-z0gn&$s6(kul_o1b=zkyr6wr7bof2if40rge^tdxsu3hp*q'
+SECRET_KEY = env.get_value('SECRET_KEY', str)
 
-DEBUG = True
+DEBUG = env.get_value('DEBUG', bool)
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Discriminator_dev_v1',
-        'USER': 'Disc',
-        'PASSWORD': 'V9reamWwANyYc8j',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'TEST': {
-            'NAME': 'test_Discriminator_dev_v1',
-        },
-    }
+    'default':env.db(),
 }
-
