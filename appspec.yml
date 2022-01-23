@@ -14,7 +14,7 @@ hooks:
     - location: scripts/CodeDeploy/01_ApplicationStop.sh
       runas: ubuntu
       timeout: 30
-  BeforeInstall:
+  AfterInstall:
     - location: scripts/CodeDeploy/02_AfterInstall.sh
       runas: ubuntu
       timeout: 300
