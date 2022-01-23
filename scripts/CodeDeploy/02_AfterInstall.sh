@@ -5,5 +5,5 @@ source /home/ubuntu/.profile
 source /home/ubuntu/discriminator/venv/bin/activate
 
 # pythonライブラリインストール
-sudo pip install -r /home/ubuntu/discriminator/requirement/base.txt
+pip install -r /home/ubuntu/discriminator/requirement/base.txt
 deactivate
