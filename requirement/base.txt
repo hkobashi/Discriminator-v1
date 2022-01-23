@@ -1,5 +1,5 @@
 # ステージング・本番環境で共通して使用するライブラリ
 Django==3.2.9
 django-environ==0.8.1
-mysqlclient==2.1.0
-unicorn==1.0.3
+mysqlclient==2.0.3
+gunicorn==1.0.3
