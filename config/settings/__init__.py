@@ -1,6 +1,6 @@
-from .EC2 import *
+# from .EC2 import *
 
-try:
-    from .local import *
-except:
-    pass
+# try:
+#     from .local import *
+# except:
+#     pass
