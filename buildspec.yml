@@ -1,0 +1,19 @@
+version: 0.2
+run-as: ubuntu
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.9
+    commands:
+      - echo Entered the install phase on `date`...
+      - python3 -m venv /home/ubuntu/venv
+  pre_build:
+    commands:
+      - echo 'Start UnitTest on `date`...'
+      - source /home/ubuntu/venv/bin/activate
+      - pip install -r requirements.txt
+      - python manage.py test review.tests
+  build:
+    commands:
+      - echo passed
