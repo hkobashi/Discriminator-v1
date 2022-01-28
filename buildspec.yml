@@ -14,7 +14,8 @@ phases:
       - . venv/bin/activate
       - pwd
       - pip install -r requirement/base.txt 
+      - pip install -r requirement/codeBuild.txt 
   build:
     commands:
       - echo Start Test on `date`
-      - python manage.py test review.tests --settings config.settings.EC2
+      - python manage.py test review.tests --settings config.settings.codeBuild
