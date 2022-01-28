@@ -1,3 +1,4 @@
+-- codebuildでインストールしたDBに投入するクエリ
 CREATE database Discriminator_dev_v1;
 USE Discriminator_dev_v1;
 CREATE USER 'Disc'@'localhost' IDENTIFIED BY 'V9reamWwANyYc8j';

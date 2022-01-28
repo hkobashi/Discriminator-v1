@@ -1,19 +1,24 @@
 version: 0.2
 #run-as: ubuntu
+env:
+  variables:
+    MYSQL_PASSWORD: "Passw0rd"
 
 phases:
   install:
     runtime-versions:
       python: 3.9
     commands:
-      - echo Entered the install phase on `date`...
-      - python3 -m venv venv
-      - echo "mysql-server mysql-server/root_password password ${DB_ROOT_PASSWORD}" |debconf-set-selections
-      - echo "mysql-server mysql-server/root_password_again password ${DB_ROOT_PASSWORD}" |debconf-set-selections
-      - apt-get update -y
-      - apt-get install -y mysql-server-5.7
-      - systemctl start mysql
-      - mysql < review/seed.sql
+      - apt-get update
+      - apt-get install -y gnupg procps mysql-community-server
+      - export DEBIAN_FRONTEND=noninteractive
+      - apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 5072E1F5
+      - echo "deb http://repo.mysql.com/apt/ubuntu/ trusty mysql-5.7" | tee -a /etc/apt/sources.list.d/mysql.list
+      - echo "mysql-community-server mysql-community-server/root-pass password ${MYSQL_PASSWORD}" | debconf-set-selections
+      - echo "mysql-community-server mysql-community-server/re-root-pass password ${MYSQL_PASSWORD}" | debconf-set-selections
+      - service mysql start
+      - mysql < scripts/CodeBuild/seed.sql
+
 
   pre_build:
     commands:
