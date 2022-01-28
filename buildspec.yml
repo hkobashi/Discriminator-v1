@@ -12,7 +12,8 @@ phases:
     commands:
       - echo Start pre_build on `date`...
       - . venv/bin/activate
-      - pip install -r requirements.txt
+      - pwd
+#      - pip install -r requirements.txt
   build:
     commands:
       - echo Start Test on `date`
