@@ -7,13 +7,13 @@ phases:
       python: 3.9
     commands:
       - echo Entered the install phase on `date`...
-      - python3 -m venv /home/ubuntu/venv
+      - python3 -m venv venv
   pre_build:
     commands:
-      - echo 'Start UnitTest on `date`...'
-      - source /home/ubuntu/venv/bin/activate
+      - echo Start pre_build on `date`...
+      - . venv/bin/activate
       - pip install -r requirements.txt
-      - python manage.py test review.tests
   build:
     commands:
-      - echo passed
+      - echo Start Test on `date`
+      - python manage.py test review.tests
