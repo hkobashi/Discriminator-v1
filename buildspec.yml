@@ -8,14 +8,24 @@ phases:
     commands:
       - echo Entered the install phase on `date`...
       - python3 -m venv venv
+      - echo "mysql-server mysql-server/root_password password ${DB_ROOT_PASSWORD}" |debconf-set-selections
+      - echo "mysql-server mysql-server/root_password_again password ${DB_ROOT_PASSWORD}" |debconf-set-selections
+      - apt-get update -y
+      - apt-get install -y mysql-server-5.7
+      - systemctl start mysql
+      - mysql < review/seed.sql
+
   pre_build:
     commands:
       - echo Start pre_build on `date`...
       - . venv/bin/activate
-      - pwd
       - pip install -r requirement/base.txt 
       - pip install -r requirement/codeBuild.txt 
+      - python manage.py migrate
+
   build:
     commands:
       - echo Start Test on `date`
-      - python manage.py test review.tests --settings config.settings.codeBuild
+      - python manage.py test review.tests.test_models --settings config.settings.codeBuild
+      - python manage.py test review.tests.test_urls --settings config.settings.codeBuild
+      - python manage.py test review.tests.test_views --settings config.settings.codeBuild
