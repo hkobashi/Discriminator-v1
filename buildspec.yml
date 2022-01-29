@@ -4,7 +4,7 @@ env:
   variables:
     DB_ROOT_PASSWORD: "password"
     DB_HOST: "localhost"
-    DB_PASSWORD: "password"
+    DB_PASSWORD: "P@ssw0rd"
     DB_SOCKET: "/var/run/mysqld/mysqld.sock"
 
 phases:
