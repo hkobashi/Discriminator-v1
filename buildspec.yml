@@ -12,7 +12,7 @@ phases:
       - apt-get install -y mysql-server
       - mysql --version
       - service mysql start
-      - mysql < scripts/CodeBuild/CodeBuild.sql
+      - mysql < scripts/CodeBuild/codeBuild.sql
   pre_build:
     commands:
       - echo Start pre_build on `date`...
