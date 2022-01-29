@@ -1,0 +1,5 @@
+# CodeBuild用設定ファイル
+SECRET_KEY=x)-z0gn&$s6(kul_o1b=zkyr6wr7bof2if40rge^tdxsu3hp*q
+DEBUG=False
+ALLOWED_HOSTS=localhost, 127.0.0.1
+DATABASE_URL=mysql://Disc_test:V!9r<eamWwANyY}c8j@localhost:3306/Discriminator_test_v1

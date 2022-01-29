@@ -10,14 +10,16 @@ phases:
       - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
       - apt-get update -y
       - apt-get install -y mysql-server
+      - mysql --version
       - service mysql start
+      - mysql < scripts/CodeBuild/seed.sql
   pre_build:
     commands:
       - echo Start pre_build on `date`...
       - . venv/bin/activate
       - pip install -r requirement/base.txt
       - pip install -r requirement/codeBuild.txt
-      - python manage.py migrate
+      - python manage.py migrate --settings config.settings.codeBuild
 
   build:
     commands:

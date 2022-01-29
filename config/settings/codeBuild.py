@@ -4,7 +4,7 @@ import environ
 
 # .envにある変数を読み込み
 env = environ.Env(DEBUG=(bool,False))
-env.read_env(os.path.join(BASE_DIR,'.test_env'))
+env.read_env(os.path.join(BASE_DIR,'scripts/CodeBuild/.test_env'))
 
 SECRET_KEY = env.get_value('SECRET_KEY', str)
 
