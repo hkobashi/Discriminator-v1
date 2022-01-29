@@ -7,6 +7,8 @@ phases:
     commands:
       - echo Entered the install phase on `date`...
       - python3 -m venv venv
+      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+      - apt-get update -y
       - apt-get install -y mysql-server
       - service mysql start
   pre_build:
