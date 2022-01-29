@@ -18,8 +18,8 @@ phases:
       - echo "mysql-server mysql-server/root_password password ${DB_ROOT_PASSWORD}" |debconf-set-selections
       - echo "mysql-server mysql-server/root_password_again password ${DB_ROOT_PASSWORD}" |debconf-set-selections
       - echo "deb http://repo.mysql.com/apt/ubuntu/ trusty mysql-5.7" | tee /etc/apt/sources.list.d/mysql.list
-#      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-#      - apt-get update -y
+      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+      - apt-get update -y
       - apt-get install -y mysql-server
       - service mysql start
       - mysql --version
