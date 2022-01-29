@@ -12,7 +12,7 @@ phases:
     runtime-versions:
       python: 3.9
     commands:
-      - sudo apt-get update && sudo apt-get install gnupg procps
+      - apt-get update && sudo apt-get install gnupg procps
       - export DEBIAN_FRONTEND=noninteractive
       - echo "mysql-server mysql-server/root_password password ${DB_ROOT_PASSWORD}" |debconf-set-selections
       - echo "mysql-server mysql-server/root_password_again password ${DB_ROOT_PASSWORD}" |debconf-set-selections
