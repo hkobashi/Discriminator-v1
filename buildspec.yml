@@ -1,19 +1,46 @@
 version: 0.2
 #run-as: ubuntu
+env:
+  variables:
+    DB_ROOT_PASSWORD: "password"
+    DB_HOST: "localhost"
+    DB_PASSWORD: "P@ssw0rd"
+    DB_SOCKET: "/var/run/mysqld/mysqld.sock"
 
 phases:
   install:
     runtime-versions:
       python: 3.9
     commands:
-      - echo Entered the install phase on `date`...
-      - python3 -m venv venv
+      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+      - apt-get update && apt-get install gnupg procps
+      - export DEBIAN_FRONTEND=noninteractive
+      - echo "mysql-server mysql-server/root_password password ${DB_ROOT_PASSWORD}" |debconf-set-selections
+      - echo "mysql-server mysql-server/root_password_again password ${DB_ROOT_PASSWORD}" |debconf-set-selections
+      - echo "deb http://repo.mysql.com/apt/ubuntu/ trusty mysql-5.7" | tee /etc/apt/sources.list.d/mysql.list
+      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+      - apt-get update -y
+      - apt-get install -y mysql-server
+      - service mysql start
+      - mysql --version
+      - mysql -hlocalhost -uroot -ppassword -P3306 -e "show databases;"
+      - mysql -hlocalhost -uroot -ppassword -P3306 -e "show variables like '%sock%';"
+      - mysql -hlocalhost -uroot -ppassword -P3306 -e "GRANT ALL PRIVILEGES on *.* to 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASSWORD}'; FLUSH PRIVILEGES;"
+      - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+      - mysql < scripts/CodeBuild/seed.sql
+
+
   pre_build:
     commands:
-      - echo 'Start UnitTest on `date`...'
-      - source venv/bin/activate
-      - pip install -r requirements.txt
-      - python manage.py test review.tests
+      - echo Start pre_build on `date`...
+      - . venv/bin/activate
+      - pip install -r requirement/base.txt 
+      - pip install -r requirement/codeBuild.txt 
+      - python manage.py migrate
+
   build:
     commands:
-      - echo passed
+      - echo Start Test on `date`
+      - python manage.py test review.tests.test_models --settings config.settings.codeBuild
+      - python manage.py test review.tests.test_urls --settings config.settings.codeBuild
+      - python manage.py test review.tests.test_views --settings config.settings.codeBuild
