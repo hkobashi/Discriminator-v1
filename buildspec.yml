@@ -27,6 +27,6 @@ phases:
       - python manage.py test review.tests.test_models --settings config.settings.codeBuild -v3
       - python manage.py test review.tests.test_urls --settings config.settings.codeBuild -v3
       - python manage.py test review.tests.test_views --settings config.settings.codeBuild -v3
-      - coverage run manage.py test
+      - coverage run manage.py test --settings config.settings.codeBuild
       - coverage report
       - echo Finished Test on `date`
