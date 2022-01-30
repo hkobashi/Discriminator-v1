@@ -24,6 +24,9 @@ phases:
   build:
     commands:
       - echo Start Test on `date`
-      - python manage.py test review.tests.test_models --settings config.settings.codeBuild
-      - python manage.py test review.tests.test_urls --settings config.settings.codeBuild
-      - python manage.py test review.tests.test_views --settings config.settings.codeBuild
+      - python manage.py test review.tests.test_models --settings config.settings.codeBuild -v3
+      - python manage.py test review.tests.test_urls --settings config.settings.codeBuild -v3
+      - python manage.py test review.tests.test_views --settings config.settings.codeBuild -v3
+      - coverage run manage.py test
+      - coverage report
+      - echo Finished Test on `date`
