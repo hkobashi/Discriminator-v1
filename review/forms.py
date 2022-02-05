@@ -1,4 +1,5 @@
-from django.forms import ModelForm, fields
+
+from django.forms import BooleanField, CheckboxSelectMultiple, ModelForm, MultipleChoiceField
 from .models import Review
 
 class ReviewForm(ModelForm):
@@ -6,7 +7,6 @@ class ReviewForm(ModelForm):
     super(ReviewForm, self).__init__(*args, **kwargs)
     for field in self.fields.values():
       field.widget.attrs["class"] = "form-control"
-      
   class Meta:
     model = Review
     fields = ['title', 'body', 'storeName']

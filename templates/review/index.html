@@ -6,7 +6,24 @@
   </tr>
 
   {% for review in review_list %}
-  <tr>
+    {% if review.is_published %}
+      <tr>
+        <td>{{review.id}}</td>
+        <td>{{review.title}}</td>
+        <td>{{review.body}}</td>
+        <td>
+          <a href="{% url 'review_detail' review.id %}" class="btn btn-info">詳細</a>
+        </td>
+        <td>
+          <a href="{% url 'review_update' review.id %}" class="btn btn-info">更新</a>
+        </td>
+        <td>
+          <a href="{% url 'review_delete' review.id %}" class="btn btn-danger" onclick="return confirm('本当に削除しますか？');">削除</a>
+        </td>
+      </tr>
+
+    <!-- 非公開にしているレビューを表示 -->
+    {% else %}
     <td>{{review.id}}</td>
     <td>{{review.title}}</td>
     <td>{{review.body}}</td>
@@ -14,12 +31,14 @@
       <a href="{% url 'review_detail' review.id %}" class="btn btn-info">詳細</a>
     </td>
     <td>
-      <a href="{% url 'review_update' review.id %}" class="btn btn-info">更新</a>
+      <a href="{% url 'review_update' review.id %}" class="btn btn-info">編集の続き</a>
     </td>
     <td>
       <a href="{% url 'review_delete' review.id %}" class="btn btn-danger" onclick="return confirm('本当に削除しますか？');">削除</a>
     </td>
   </tr>
+    {% endif %}
+
   {% endfor %}
   <a href="{% url 'review_create' %}" class="btn btn-success">作成</a>
 </table>

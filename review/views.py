@@ -1,5 +1,7 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Review
+from django.core.exceptions import PermissionDenied
+# templates/403.htmlを返す
 
 from .forms import ReviewForm
 
@@ -11,7 +13,11 @@ def index(request):
 def show(request, review_id):
   review = get_object_or_404(Review, pk=review_id)
   template = "review/show.html"
-  return render(request, template, {'review': review})
+
+  if review.is_published:
+    return render(request, template, {'review': review})
+  else:
+    raise PermissionDenied
 
 def create(request):
   if request.method == "POST":
