@@ -16,7 +16,7 @@ class PostReviewTests(TestCase):
     """
     レビュー作成後、詳細ページをGETできるかテスト
     """
-    review = Review.objects.create(title='title1', body='body1', storeName='storeName1', is_published=True)
+    review = Review.objects.create(title='title1', body='body1', storeName='storeName1')#, is_published=True)
     response = self.client.get(reverse('review_detail', args=(review.id, )))
     self.assertEqual(response.status_code, 200)
 
