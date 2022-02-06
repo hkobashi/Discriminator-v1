@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Review
 from django.core.exceptions import PermissionDenied
+from django.contrib.auth.decorators import login_required
+
 # templates/403.htmlを返す
 
 from .forms import ReviewForm
@@ -10,6 +12,7 @@ def index(request):
   template = "review/index.html"
   return render(request, template, {'review_list': review_list})
 
+@login_required
 def show(request, review_id):
   review = get_object_or_404(Review, pk=review_id)
   template = "review/show.html"

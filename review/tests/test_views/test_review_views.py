@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
+from django.contrib.auth import get_user_model
 
 from review.views import Review
 
@@ -12,6 +13,17 @@ class GetIndexTests(TestCase):
     self.assertEqual(response.status_code, 200)
 
 class PostReviewTests(TestCase):
+  def setUp(self):
+    """
+    認証要ページを閲覧するためにログイン用ユーザーを作成してログインする
+    """
+    userModel = get_user_model()
+    username = 'testuser'
+    email = 'test@com'
+    password = 'password'
+    userModel.objects.create_user(username, email, password)
+    self.assertTrue(self.client.login(username='testuser', email='test@com', password='password'))
+
   def test_get_detail(self):
     """
     レビュー作成後、詳細ページをGETできるかテスト

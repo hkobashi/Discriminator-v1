@@ -12,6 +12,8 @@
   </head>
   <body>
     <div class="container">
+      <a href="{% url 'review_create' %}" class="btn btn-success">作成</a>
+      <a href="{% url 'account_logout' %}"class="btn btn-info">ログアウト</a>
       {% block main %}
       {% endblock main %}
     </div>
