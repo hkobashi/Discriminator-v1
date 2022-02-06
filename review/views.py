@@ -13,11 +13,11 @@ def index(request):
 def show(request, review_id):
   review = get_object_or_404(Review, pk=review_id)
   template = "review/show.html"
-
-  if review.is_published:
-    return render(request, template, {'review': review})
-  else:
-    raise PermissionDenied
+  return render(request, template, {'review': review})
+  # if review.is_published:
+  #   return render(request, template, {'review': review})
+  # else:
+  #   raise PermissionDenied
 
 def create(request):
   if request.method == "POST":
