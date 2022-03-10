@@ -23,6 +23,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
 #    'django.contrib.admin',
+#    'aws_xray_sdk.ext.django',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -46,6 +47,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# XRAY_RECORDER = {
+#     'AUTO_INSTRUMENT': True,
+#     'AWS_XRAY_CONTEXT_MISSING': 'LOG_ERROR',
+#     'AWS_XRAY_DAEMON_ADDRESS': '127.0.0.1:2000',
+#     'AWS_XRAY_TRACING_NAME': 'My application',
+#     'SAMPLING': False,
+# }
 
 ROOT_URLCONF = 'config.urls'
 

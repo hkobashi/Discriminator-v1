@@ -6,5 +6,5 @@ urlpatterns = [
 #    path('admin/', admin.site.urls),
     path('review/', include('review.urls')),
     path('account/', include('allauth.urls')),
-    path('status/', lambda request: HttpResponse()),
+    path('status/', lambda request: HttpResponse('ok')),
 ]

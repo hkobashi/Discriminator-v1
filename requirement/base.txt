@@ -1,5 +1,6 @@
 # ステージング・本番環境で共通して使用するライブラリ
 asgiref==3.5.0
+aws-xray-sdk
 Django==3.2.9
 django-allauth
 django-environ==0.8.1

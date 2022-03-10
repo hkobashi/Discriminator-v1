@@ -14,3 +14,19 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 DATABASES = {
     'default':env.db(),
 }
+
+MIDDLEWARE += [
+    'aws_xray_sdk.ext.django.middleware.XRayMiddleware',
+]
+
+INSTALLED_APPS += [
+    'aws_xray_sdk.ext.django',
+]
+
+XRAY_RECORDER = {
+    'AUTO_INSTRUMENT': True,
+    'AWS_XRAY_CONTEXT_MISSING': 'LOG_ERROR',
+    'AWS_XRAY_DAEMON_ADDRESS': '127.0.0.1:2000',
+    'AWS_XRAY_TRACING_NAME': 'Discriminator-local',
+    'SAMPLING': False,
+}
