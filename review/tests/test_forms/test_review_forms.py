@@ -1,10 +1,22 @@
 from django.test import TestCase
-from django.urls import reverse, resolve
 from review.forms import ReviewForm
 from review.models import Review
+from django.contrib.auth import get_user_model
+
 
 
 class ReviewCreateFormsTests(TestCase):
+  def setUp(self):
+    """
+    ユーザ認証が必要なページを閲覧するためにログイン用ユーザーを作成してログインする
+    """
+    userModel = get_user_model()
+    username = 'testuser'
+    email = 'test@com'
+    password = 'password'
+    userModel.objects.create_user(username, email, password)
+    self.client.login(username=username, email=email, password=password)
+
   def test_create_review_with_form(self):
     """
     POSTメソッドで正しいデータを入れるとバリデーションが通ることをテスト
