@@ -41,7 +41,7 @@ def create(request):
 @login_required
 def update(request, review_id):
   review = get_object_or_404(Review, pk=review_id)
-  template = "review/upate.html"
+  template = "review/update.html"
   if request.method == "POST":
     form = ReviewForm(request.POST, instance=review)
     if form.is_valid():
