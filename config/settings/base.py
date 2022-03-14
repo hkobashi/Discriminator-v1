@@ -22,8 +22,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-#    'django.contrib.admin',
-#    'aws_xray_sdk.ext.django',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -47,14 +46,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-# XRAY_RECORDER = {
-#     'AUTO_INSTRUMENT': True,
-#     'AWS_XRAY_CONTEXT_MISSING': 'LOG_ERROR',
-#     'AWS_XRAY_DAEMON_ADDRESS': '127.0.0.1:2000',
-#     'AWS_XRAY_TRACING_NAME': 'My application',
-#     'SAMPLING': False,
-# }
 
 ROOT_URLCONF = 'config.urls'
 
@@ -101,7 +92,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend' # メールアドレスとパスワードの両方を用いて認証するために必要
 )
 
-ACCOUNT_AUTHENTICATION_METHOD = 'email' # メールアドレス（とパスワードで）認証する
+ACCOUNT_AUTHENTICATION_METHOD = 'username' # メールアドレス（とパスワードで）認証する
 ACCOUNT_USERNAME_REQUIRED = True # サインアップ（ユーザー登録）の時にユーザーネームを尋ねる
 ACCOUNT_EMAIL_REQUIRED = True # サインアップ（ユーザー登録）の時にメールアドレスを尋ねる
 ACCOUNT_EMAIL_VERIFICATION = 'option' # メール検証を必須とする
@@ -113,7 +104,7 @@ none:      メール検証をしない
 
 LOGIN_URL = '/account/login/' # ログインURLの設定
 LOGIN_REDIRECT_URL = '/review/' # ログイン後のリダイレクト先
-ACCOUNT_LOGOUT_REDIRECT_URL = '/account/login/' # ログアウト後のリダイレクト先
+ACCOUNT_LOGOUT_REDIRECT_URL = '/review/' # ログアウト後のリダイレクト先
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Internationalization
