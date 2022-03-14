@@ -20,7 +20,6 @@ MIDDLEWARE += [
 ]
 
 INSTALLED_APPS += [
-    'django.contrib.admin',
     'aws_xray_sdk.ext.django',
 ]
 
