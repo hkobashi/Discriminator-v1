@@ -1,4 +1,3 @@
-from django.db import models
 from django.contrib.auth.models import UserManager, AbstractUser
 
 class CustomUserManager(UserManager):
@@ -38,5 +37,10 @@ class CustomUserManager(UserManager):
 class CustomUser(AbstractUser):
   objects = CustomUserManager()
 
+
+  class Meta(AbstractUser.Meta):
+    swappable = 'AUTH_USER_MODEL'
+    # Django標準のユーザーと重複利用されるのを防ぐ
+
   def __str__(self):
-    return self.email
+    return self.username
