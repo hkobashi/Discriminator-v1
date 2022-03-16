@@ -9,4 +9,4 @@ class ReviewForm(ModelForm):
       field.widget.attrs["class"] = "form-control"
   class Meta:
     model = Review
-    fields = ['title', 'body', 'storeName', 'user']
+    fields = ['title', 'body', 'storeName']
