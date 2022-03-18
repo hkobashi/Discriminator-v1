@@ -1,10 +1,10 @@
 -- データベース作成
-CREATE database discriminator_dev_v1;
-USE discriminator_dev_v1;
+CREATE database discriminator_local_v1;
+USE discriminator_local_v1;
 
 -- ユーザー作成
-CREATE USER 'disc_staging'@'%' IDENTIFIED BY '7Thx<qYs]67ynCfUF';
+CREATE USER 'disc_local_v1'@'localhost' IDENTIFIED BY '7ThxqYs67yn';
 
 -- 作成したDBユーザーに権限を付与
-GRANT ALL PRIVILEGES ON discriminator_dev_v1 . * TO 'disc_staging'@'%';
+GRANT ALL PRIVILEGES ON * . * TO 'disc_local_v1'@'localhost';
 FLUSH PRIVILEGES;
