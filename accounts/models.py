@@ -37,7 +37,6 @@ class CustomUserManager(UserManager):
 class CustomUser(AbstractUser):
   objects = CustomUserManager()
 
-
   class Meta(AbstractUser.Meta):
     swappable = 'AUTH_USER_MODEL'
     # Django標準のユーザーと重複利用されるのを防ぐ

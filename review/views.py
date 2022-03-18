@@ -30,7 +30,9 @@ def show(request, review_id):
 @login_required
 def create(request):
   if request.method == "POST":
-    form = ReviewForm(request.POST)
+    copied = request.POST.copy()
+    copied["user"] = request.user.id
+    form = ReviewForm(copied)
     if form.is_valid():
       form.save()
       return redirect('review_index')

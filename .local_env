@@ -1,4 +1,4 @@
 SECRET_KEY=x)-z0gn&$s6(kul_o1b=zkyr6wr7bof2if40rge^tdxsu3hp*q
 DEBUG=True
 ALLOWED_HOSTS=*
-DATABASE_URL=mysql://Disc:V9reamWwANyYc8j@localhost:3306/Discriminator_dev_v1
+DATABASE_URL=mysql://disc_local_v1:7ThxqYs67yn@localhost:3306/discriminator_local_v1

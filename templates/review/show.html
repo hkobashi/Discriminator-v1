@@ -7,10 +7,13 @@
     <td>{{ review.title }}</td>
     
   </tr>
-
   <tr>
     <th>レビュー</th>
-    <td>{{ review.user_id }}</td>
+    <td>{{ review.body }}</td>
+  </tr>
+  <tr>
+    <th>投稿者</th>
+    <td>{{ review.user }}</td>
   </tr>
   <a href="{% url 'review_index' %}" class="btn btn-secondary">一覧に戻る</a>
 </table>
