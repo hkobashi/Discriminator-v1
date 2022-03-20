@@ -24,7 +24,7 @@ def index(request):
 
 def show(request, review_id):
   review = get_object_or_404(Review, pk=review_id)
-  user = review.user
+#  user = review.user
   template = "review/show.html"
   return render(request, template, {'review': review})
 
