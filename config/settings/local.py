@@ -30,3 +30,7 @@ XRAY_RECORDER = {
     'AWS_XRAY_TRACING_NAME': 'Discriminator-local',
     'SAMPLING': False,
 }
+
+# 画像保存先URLを指定
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
