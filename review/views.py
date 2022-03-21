@@ -33,7 +33,7 @@ def create(request):
   if request.method == "POST":
     copied = request.POST.copy()
     copied["user"] = request.user.id
-    form = ReviewForm(copied)
+    form = ReviewForm(copied, request.FILES)
     if form.is_valid():
       form.save()
       return redirect('review_index')
