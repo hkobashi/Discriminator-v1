@@ -34,3 +34,11 @@ XRAY_RECORDER = {
 # 画像保存先URLを指定
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# S3接続についての設定
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_STORAGE_BUCKET_NAME = 'kobashikawa-test'
+AWS_S3_REGION_NAME = 'ap-northeast-1'
+
+AWS_ACCESS_KEY_ID = env.get_value('AWS_ACCESS_KEY_ID', str)
+AWS_SECRET_ACCESS_KEY = env.get_value('AWS_SECRET_ACCESS_KEY', str)
