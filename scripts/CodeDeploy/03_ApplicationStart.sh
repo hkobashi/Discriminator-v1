@@ -5,7 +5,3 @@ source /home/ubuntu/.profile
 source /home/ubuntu/discriminator/venv/bin/activate
 python /home/ubuntu/discriminator/manage.py migrate --settings config.settings.EC2
 deactivate
-
-# Nginx, gunicorn再起動
-sudo systemctl restart nginx
-sudo systemctl restart gunicorn
