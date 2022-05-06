@@ -15,6 +15,10 @@ hooks:
       runas: ubuntu
       timeout: 30
   AfterInstall:
+    - location: scripts/CodeDeploy/test.sh
+      runas: ubuntu
+      timeout: 300
+  AfterInstall:
     - location: scripts/CodeDeploy/02_AfterInstall.sh
       runas: ubuntu
       timeout: 300
