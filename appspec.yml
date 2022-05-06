@@ -17,11 +17,11 @@ hooks:
   AfterInstall:
     - location: scripts/CodeDeploy/test.sh
       runas: ubuntu
-      timeout: 300
+      timeout: 600
   AfterInstall:
     - location: scripts/CodeDeploy/02_AfterInstall.sh
       runas: ubuntu
-      timeout: 300
+      timeout: 600
   ApplicationStart:
     - location: scripts/CodeDeploy/03_ApplicationStart.sh
       runas: ubuntu
